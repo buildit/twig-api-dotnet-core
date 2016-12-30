@@ -6,11 +6,15 @@
     "tasks": [
         {
             "taskName": "build",
-            "args": [
-                "${workspaceRoot}/TwigApi.Test/TwigApi.Test.csproj"
-            ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "test",
+            "args": [
+                "${workspaceRoot}/src/TwigApi.Test/TwigApi.Test.csproj"
+            ],
+            "isTestCommand": true
         }
     ]
 }
