@@ -13,24 +13,24 @@ namespace TwigApi
     [Route("/[controller]")]
     public class TwigletsController : Controller
     {
-        private static HttpClient client = new HttpClient()
+        private static readonly HttpClient client = new HttpClient()
         {
             BaseAddress = new Uri("http://localhost:5984"),
         };
+        private readonly ILogger _logger;
+
 
         public TwigletsController(ILogger<TwigletsController> logger)
         {
-            Logger = logger;
+            _logger = logger;
         }
-
-        private ILogger Logger { get; }
 
         [HttpGet]
         public async Task<IEnumerable<TwigletSummary>> GetAllTwiglets()
         {
             var response = await client.GetAsync("/twiglets/_all_docs?include_docs=true");
-            var content = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<CouchDbQueryResult<TwigletSummary>>(content);
+            response.EnsureSuccessStatusCode();
+            var result = JsonConvert.DeserializeObject<CouchDbQueryResult<TwigletSummary>>(await response.Content.ReadAsStringAsync());
             return result.Rows.Select(x =>
             {
                 x.Doc.Href = new Uri(Url.RouteUrl(nameof(TwigletsController.GetTwiglet), new { id = x.Doc._Id }, Request.Scheme));
