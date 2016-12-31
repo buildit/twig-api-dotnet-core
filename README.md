@@ -11,7 +11,7 @@ A .NET Core spike of twig-api
 #### Build
 `dotnet build`
 
-#### Run (open http://localhost:5000/twiglets for example)
+#### Run (open <http://localhost:5000/twiglets> for example)
 `dotnet run`
 
 #### Run Tests
