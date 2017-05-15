@@ -1,17 +1,25 @@
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+    <PackageReference Include="FluentAssertions" Version="4.19.2" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TwigApi\TwigApi.csproj">
+      <Project>{EC3E8CB1-F89F-438A-8431-1903958BD19B}</Project>
+      <Name>TwigApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <!--<ItemGroup>
     <PackageReference Include="Microsoft.NETCore.App">
       <Version>1.1.0</Version>
     </PackageReference>
@@ -46,5 +54,5 @@
       <Name>TwigApi</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />-->
 </Project>

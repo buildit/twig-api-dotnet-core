@@ -41,10 +41,11 @@ namespace TwigApi
             // eventually this will get fixed in next release to allow all subdomains
             // https://github.com/aspnet/CORS/pull/94
             app.UseCors(builder => builder.AllowCredentials().WithOrigins(
-                "http://staging.twig.riglet", 
-                "http://twig.riglet",
-                "http://synapse.riglet",
-                "http://synapse.staging.riglet"));
+                "//*.riglet"));
+            // "http://staging.twig.riglet", 
+            // "http://twig.riglet",
+            // "http://synapse.riglet",
+            // "http://synapse.staging.riglet"));
             app.UseMvc();
         }
     }
