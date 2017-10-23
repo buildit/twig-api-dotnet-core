@@ -13,8 +13,9 @@ namespace TwigApi.Test
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
-        
-        public TwigletsControllerTest() {
+
+        public TwigletsControllerTest()
+        {
             _server = new TestServer(new WebHostBuilder()
             .UseStartup<Startup>());
             _client = _server.CreateClient();

@@ -39,9 +39,13 @@ namespace TwigApi
         }
 
         [HttpGet("{id}", Name = nameof(TwigletsController.GetTwiglet))]
-        public async Task<Twiglet> GetTwiglet(string id)
+        public async Task<String> GetTwiglet(string id)
         {
-            return null;
+            var response = await client.GetAsync($"/twiglets/{id}?include_docs=true");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            _logger.LogInformation(result);
+            return result;
         }
     }
 
